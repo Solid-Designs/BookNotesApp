@@ -9,22 +9,27 @@ import java.util.Arrays;
 public class MainFrame extends JFrame {
     private LoginRegisterForm loginRegisterForm;
     private Controller controller;
+    private TablePanel tablePanel;
 
     public MainFrame(){
         super("Book Notes App");
 
         loginRegisterForm = new LoginRegisterForm();
         controller = new Controller();
+        tablePanel = new TablePanel();
 
         setLayout(new BorderLayout());
 
-        add(loginRegisterForm, BorderLayout.CENTER);
+        add(loginRegisterForm, BorderLayout.WEST);
+        add(tablePanel, BorderLayout.CENTER);
+
+        tablePanel.setData(controller.getCommunity());
 
         loginRegisterForm.setFormListener(new FormListener() {
             @Override
             public void formEventOccurred(FormEvent e) {
                 controller.createUser(e);
-                System.out.println(controller.getCommunity());
+                tablePanel.refresh();
             }
         });
 

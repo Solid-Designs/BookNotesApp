@@ -7,7 +7,7 @@ import model.User;
 import java.util.List;
 
 public class Controller {
-    Database db = new Database();
+    private Database db = new Database();
 
     public void createUser(FormEvent ev){
         String userName = ev.getUserName();
